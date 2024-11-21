@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LEGO with discounts</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <!-- Логотип LEGO -->
+        <img class="logo" src="{% static 'images/lego.svg' %}" alt="LEGO">
+        <h1>Discounted product</h1>
+    </header>
+
+    {% if toys %}
+        <table>
+            <thead>
+                <tr>
+                    <!-- <th>Изображение</th> -->
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Number of pieces</th>
+                    <th>Rating</th>
+                    <th>Price</th>
+                    <th>Discounted</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for toy in toys %}
+                    <tr>
+                        <td>{{ toy.name }}</td>
+                        <td>{{ toy.age|default:"-" }}</td>
+                        <td>{{ toy.pieces|default:"-" }}</td>
+                        <td>{{ toy.rating|default:"-" }}</td>
+                        <td>{{ toy.price|default:"-" }}</td>
+                        <td>{{ toy.discount|default:"-" }}</td>
+                        <td>{{ toy.description|default:"-" }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p class="no-data">There are no discounted toys available at this time.</p>
+    {% endif %}
+</body>
+</html>
